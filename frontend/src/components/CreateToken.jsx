@@ -101,6 +101,7 @@ import { ethers } from "ethers";
 import { FACTORY_ABI } from "../contractABI";
 import { FACTORY_ADDRESS } from "../config";
 import "./web3.css";
+import toast from "react-hot-toast";
 
 export default function CreateToken({ onTokenCreated }) {
    const [name, setName] = useState("");
@@ -116,7 +117,8 @@ export default function CreateToken({ onTokenCreated }) {
          setLoading(true);
          setSuccess(false);
          if (!window.ethereum) {
-            alert("Install MetaMask");
+            // alert("Install MetaMask");
+            toast.error("Please install MetaMask");
             return;
          }
          const provider = new ethers.BrowserProvider(window.ethereum);
@@ -130,12 +132,14 @@ export default function CreateToken({ onTokenCreated }) {
          setTxHash(tx.hash);
          const receipt = await tx.wait();
          const event = receipt.logs;
-         alert("Token Created Successfully!");
+         // alert("Token Created Successfully!");
+         toast.success("Token Created Successfully!");
          setSuccess(true);
          onTokenCreated();
       } catch (err) {
          console.error(err);
-         alert("Transaction Failed");
+         // alert("Transaction Failed");
+         toast.error("Transaction Failed");
       } finally {
          setLoading(false);
       }

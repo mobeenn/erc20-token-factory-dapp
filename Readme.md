@@ -64,6 +64,6 @@ Built with **Solidity**, **React**, and **Ethers.js**.
 ### 1. Clone Repo
 
 ```bash
-git clone https://github.com/your-username/erc20-token-factory-dapp
+git https://github.com/mobeenn/erc20-token-factory-dapp
 cd erc20-token-factory-dapp
 ```
